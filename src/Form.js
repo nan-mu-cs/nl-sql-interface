@@ -2,47 +2,48 @@
  * Created by kai on 20/02/2018.
  */
 import React, { Component } from 'react';
-import { FormGroup, ControlLabel, FormControl, HelpBlock, Button} from 'react-bootstrap';
-
+import FormItem from "./FormItem";
 
 class Form extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         this.state = {
-            value:""
+            data:[
+                {   id:1,
+                    nl:"what are all the hellos",
+                    sql:"select * from hello where a = v"
+                },
+                {   id:2,
+                    nl:"what are all the hellos",
+                    sql:"select * from hello where a = v"
+                },
+                {   id:3,
+                    nl:"what are all the hellos",
+                    sql:"select * from hello where a = v"
+                },
+                {   id:4,
+                    nl:"what are all the hellos",
+                    sql:"select * from hello where a = v"
+                },
+            ]
         };
+
+        this.handleUpdates = this.handleUpdates.bind(this);
     }
 
-    getValidationState() {
-        const length = this.state.value.length;
-        if (length > 10) return 'success';
-        else if (length > 5) return 'warning';
-        else if (length > 0) return 'error';
-        return null;
+    handleUpdates(item){
+        console.log("data updated"+item.nl+item.sql);
     }
-
-    handleChange(e) {
-        this.setState({ value: e.target.value });
-    }
-
 
     render(){
+        let formList = this.state.data.map((item,idx)=>{
+            console.log(item);
+            return <FormItem key={item.id} data={item}  handleUpdates={this.handleUpdates} />
+        });
         return(
             <form id = "input-form" >
-                <FormGroup controlId = "formBasicText"
-                           validationState = { this.getValidationState() } >
-                    <ControlLabel > NL / SQL PAIR ID: </ControlLabel>
-                        <FormControl type = "text"
-                                     value = { this.state.value } placeholder = "Enter text"
-                                     onChange = { this.handleChange }/>
-                        <FormControl type = "text"
-                                     value = { this.state.value } placeholder = "Enter text"
-                                     onChange = { this.handleChange } />
-                        <FormControl.Feedback />
-                        <HelpBlock > fix your natural language here </HelpBlock> </FormGroup>
-                <Button type = "submit" > Submit </Button>
-                    <Button type = "delete" > Delete </Button>
+                {formList}
             </form>
         );
     }

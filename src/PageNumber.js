@@ -19,9 +19,9 @@ class PageNumber extends React.Component {
                 <Pagination.Prev />
                 <Pagination.Item > { 1 } </Pagination.Item>
                     <Pagination.Ellipsis />
-                    <Pagination.Item active > { 12 } </Pagination.Item>
+                    <Pagination.Item active > { this.props.currentPage } </Pagination.Item>
                     <Pagination.Ellipsis />
-                    <Pagination.Item > { 20 } </Pagination.Item>
+                    <Pagination.Item > { this.props.totalPage } </Pagination.Item>
                     <Pagination.Next />
                     <Pagination.Last />
             </Pagination>
