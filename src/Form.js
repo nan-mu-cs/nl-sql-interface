@@ -38,7 +38,7 @@ class Form extends React.Component {
 
     render(){
         let formList = this.state.data.map((item,idx)=>{
-            console.log(item);
+            // console.log(item);
             return <FormItem key={item.id} data={item}  handleUpdates={this.handleUpdates} />
         });
         return(

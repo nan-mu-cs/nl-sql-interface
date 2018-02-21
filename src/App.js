@@ -29,7 +29,7 @@ export class App extends React.Component {
                 <Grid >
                     <Row className = "show-grid" >
                         <Col xs = { 12 } md = { 6 } >
-                            <Form data ={this.state.data}/>
+                            <Form />
                             <PageNumber currentPage={this.state.currentPage} totalPage={this.state.totalPage}/>
                         </Col>
                         <Col xs = { 6 } md = { 6 } >
