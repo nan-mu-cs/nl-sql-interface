@@ -35,18 +35,31 @@ class FormItem extends Component {
         // console.log(this.props);
         return(
             <div>
+                <h4>ID:{this.props.data.id}</h4>
                 <FormGroup controlId = "formBasicText"
                            validationState = { this.getValidationState() } >
-                    <ControlLabel > NL / SQL PAIR ID: </ControlLabel>
+                    <ControlLabel > Natural Language: </ControlLabel>
                     <FormControl type = "text"
                                  defaultValue = { this.props.data.nl } placeholder = "Enter text" inputRef={(ref)=>{this.nl=ref}}
                     />
+                </FormGroup>
+
+                <FormGroup controlId = "formBasicText"
+                           validationState = { this.getValidationState() } >
+                    <ControlLabel > SQL: </ControlLabel>
                     <FormControl type = "text"
                                  defaultValue = { this.props.data.sql } placeholder = "Enter text" inputRef={(ref)=>{this.sql=ref}}
-                                  />
-                    <FormControl.Feedback />
-                    <HelpBlock > fix your natural language here </HelpBlock>
+                    />
                 </FormGroup>
+
+                <FormGroup controlId = "formBasicText"
+                           validationState = { this.getValidationState() } >
+                    <ControlLabel > Paraphase </ControlLabel>
+                    <FormControl type = "text"
+                                 placeholder = "Enter text" inputRef={(ref)=>{this.paraphase=ref}}
+                    />
+                </FormGroup>
+
                 <Button type="button" onClick={this.handleChange}> Submit </Button>
                 <Button type = "button" > Delete </Button>
             </div>
