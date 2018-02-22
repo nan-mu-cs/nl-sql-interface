@@ -5,7 +5,7 @@ import Schema from "./Schema";
 import PageNumber from "./PageNumber";
 import Form from "./Form";
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button, Grid, Row, Col, Pagination } from 'react-bootstrap';
-
+import axios from './Axios'
 
 export class App extends React.Component {
     constructor(props, context) {
@@ -15,7 +15,6 @@ export class App extends React.Component {
             totalPage:10
         };
         this.renderform = this.renderform.bind(this);
-
     }
 
 
