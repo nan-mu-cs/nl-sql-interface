@@ -15,7 +15,7 @@ class Schema extends React.Component {
 
     handleUpdates(pic_name){
         this.state = {
-            er:require('./images/' + pic_name),
+            er:require('./../images/' + pic_name),
             name: pic_name
         }
         console.log(pic_name);
