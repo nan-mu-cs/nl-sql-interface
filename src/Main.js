@@ -27,12 +27,15 @@ export class Main extends Component {
                     <Row className = "show-grid" >
                         <Col xs = { 12 } md = { 6 } >
                             <Form />
-                            <PageNumber />
+                        </Col>
+                        <Col className="schema-col" xs = { 12 } md = { 6 } >
+                            <Schema />
                         </Col>
                     </Row>
                     <Row>
                         <Col xs = { 12 } md = { 6 } >
-                            <Schema />
+                            <PageNumber />
+
                         </Col>
                     </Row>
                 </Grid>
