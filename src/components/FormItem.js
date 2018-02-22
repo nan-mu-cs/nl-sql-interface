@@ -4,6 +4,8 @@
 
 import React,{Component} from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button} from 'react-bootstrap';
+import { connect } from 'react-redux'
+import axios from "../Axios";
 
 class FormItem extends Component {
     constructor(props, context) {
@@ -27,7 +29,15 @@ class FormItem extends Component {
         this.props.handleUpdates({
             id:this.props.data.id,
             nl:this.nl.value,
-            sql:this.sql.value
+            sql:this.sql.value,
+            paraphase:this.paraphase.value
+        });
+        axios.post("/update",{
+            id:this.props.data.id,
+            nl:this.nl.value,
+            sql:this.sql.value,
+            paraphase:this.paraphase.value,
+            username:this.props.user
         });
         // this.setState({ value: e.target.value });
     }
@@ -67,4 +77,13 @@ class FormItem extends Component {
     }
 }
 
-export default FormItem;
+const mapStateToProps = (state, ownProps) => {
+    // debugger;
+    // console.log(state);
+    return{
+        user:state.reducers.user,
+    }};
+
+export default connect(
+    mapStateToProps
+)(FormItem);

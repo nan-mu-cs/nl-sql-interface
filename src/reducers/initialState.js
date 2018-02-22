@@ -5,5 +5,6 @@ export default {
     totalPage:10,
     currentPage:1,
     user:"",
-    isLogin:false
+    databases:[],
+    currentDatabase:""
 };

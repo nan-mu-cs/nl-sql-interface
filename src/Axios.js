@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 export default axios.create({
-    baseURL: 'https://localhost:1080/api/',
+    baseURL: 'http://tangra.cs.yale.edu:3000/',
     timeout: 1000,
     headers: {'X-Custom-Header': 'foobar'}
-});;
+});

@@ -3,7 +3,8 @@
  */
 import React, { Component } from 'react';
 import FormItem from "./FormItem";
-import axios from 'axios';
+import {connect} from "react-redux";
+import axios from '../Axios';
 
 class Form extends React.Component {
     constructor(props, context) {
@@ -33,8 +34,21 @@ class Form extends React.Component {
         this.handleUpdates = this.handleUpdates.bind(this);
     }
 
+    componentDidMount(){
+        axios.get("/get_list",{
+            params:{
+                database:this.props.currentDatabase,
+                page_idx:this.props.currentPage
+            }
+        }).then(function (response) {
+            this.setState({
+               data:response.data
+            });
+        }.bind(this));
+    }
     handleUpdates(item){
-        console.log("data updated"+item.nl+item.sql);
+        // console.log("data updated"+item.nl+item.sql);
+
     }
 
     render(){
@@ -50,4 +64,11 @@ class Form extends React.Component {
     }
 }
 
-export default Form;
+const mapStateToProps = (state, ownProps) => {
+    // debugger;
+    // console.log(state);
+    return{
+        currentPage:state.reducers.currentPage,
+        currentDatabase:state.reducers.currentDatabase
+    }};
+export default connect(mapStateToProps)(Form);

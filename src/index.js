@@ -4,7 +4,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-
+import axios from "./Axios";
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 
@@ -24,7 +24,7 @@ const middleware = routerMiddleware(history);
 // Add the reducer to your store on the `router` key
 // Also apply our middleware for navigating
 // debugger;
-console.log(reducers);
+// console.log(reducers);
 const store = createStore(
     combineReducers({
         reducers,
@@ -35,7 +35,9 @@ const store = createStore(
 
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/foo'))
-
+axios.get("/get_names_database").then(function (response) {
+    store.dispatch({type:"UPDATE_DATABASES_NAME",data:response.data});
+});
 ReactDOM.render(
     <Provider store={store}>
         { /* ConnectedRouter will use the store from Provider automatically */ }

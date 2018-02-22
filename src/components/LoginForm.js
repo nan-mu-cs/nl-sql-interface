@@ -15,9 +15,8 @@ class LoginForm extends Component {
         super(props, context);
         this.state = {
             username: "",
-            databases: ["advertising_agencies_model", "agile_data_model"]
         };
-        this.submitName = this.submitName.bind(this);
+        // this.submitName = this.submitName.bind(this);
         this.submitDatabase = this.submitDatabase.bind(this);
     }
     componentDidMount() {
@@ -37,29 +36,48 @@ class LoginForm extends Component {
         return null;
     }
 
-    submitName(e) {
-        this.setState({
-            username: this.inputname.value
-        });
-        console.log({ value: this.inputname.value });
-        this.props.dispatch({type:"login", value:this.inputname.value})
-    }
+    // submitName(e) {
+    //     this.setState({
+    //         username: this.inputname.value
+    //     });
+    //     console.log({ value: this.inputname.value });
+    //     this.props.dispatch({type:"login", value:this.inputname.value})
+    // }
 
     submitDatabase(e) {
         this.setState({
             username: this.inputname.value
         });
         console.log({ value: this.inputname.value });
-        this.props.dispatch({type:"login", value:this.inputname.value})
-        console.log({ value: this.target_database.value });
-        this.props.dispatch({type:"login", value:this.target_database.value })
-        this.props.dispatch(push("/test"))
+        this.props.dispatch(
+            {
+                type:"LOGIN",
+                data:{
+                    user: this.inputname.value,
+                    currentDatabase:this.target_database.value
+                }
+            }
+            );
+        axios.get("/get_nums_page", {
+                params: {
+                    database: this.target_database.value
+                }
+            }).then(function (response) {
+                //console.log(this.props);
+                //debugger;
+
+           this.props.dispatch({type:"UPDATE_TOTAL_PAGE",data:response.data});
+            this.props.dispatch(push("/test"))
+        }.bind(this));
+        // console.log({ value: this.target_database.value });
+        // this.props.dispatch({type:"login", value:this.target_database.value });
+        //this.props.dispatch(push("/test"))
     }
     render(){
         // console.log(this.props);
-        let databaseList = this.state.databases.map((item,idx)=>{
+        let databaseList = this.props.databases.map((item,idx)=>{
             // console.log(item);
-            return <option valu="other" key={item} data={item}>{item}</option>
+            return <option valu="other" key={item}>{item}</option>
         });
         return(
             <div>
@@ -84,4 +102,11 @@ class LoginForm extends Component {
     }
 }
 
-export default connect()(LoginForm);
+const mapStateToProps = (state, ownProps) => {
+    // debugger;
+    // console.log(state);
+    return{
+        databases:state.reducers.databases,
+    }};
+
+export default connect(mapStateToProps)(LoginForm);
