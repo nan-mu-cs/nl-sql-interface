@@ -3,6 +3,9 @@
  */
 import React,{Component} from 'react';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button} from 'react-bootstrap';
+import axios from './../Axios'
+
+
 
 class LoginForm extends Component {
     constructor(props, context) {
@@ -25,6 +28,8 @@ class LoginForm extends Component {
             username: this.inputname.value
         });
         console.log({ value: this.inputname.value });
+        this.props.dispatch({type:"login", value:""})
+
     }
     render(){
         // console.log(this.props);
