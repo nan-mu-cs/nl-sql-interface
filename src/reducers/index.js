@@ -7,6 +7,7 @@ export default (state = initialState, action) => {
     // debugger;
     // console.log(initialState);
     switch (action.type){
+        case "login": return {...state,user:action.value}
         default:
             return state
     }
