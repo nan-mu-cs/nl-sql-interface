@@ -1,0 +1,9 @@
+/**
+ * Created by kai on 21/02/2018.
+ */
+export default {
+    totalPage:10,
+    currentPage:1,
+    user:"",
+    isLogin:false
+};

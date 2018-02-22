@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
-import Header from "./Header";
-import Schema from "./Schema";
-import PageNumber from "./PageNumber";
-import Form from "./Form";
+import './Main.css';
+import Header from "./components/Header";
+import Schema from "./components/Schema";
+import PageNumber from "./components/PageNumber";
+import Form from "./components/Form";
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button, Grid, Row, Col, Pagination } from 'react-bootstrap';
 import axios from './Axios'
 
-export class App extends React.Component {
+export class Main extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -31,10 +31,8 @@ export class App extends React.Component {
                             <Form />
                             <PageNumber currentPage={this.state.currentPage} totalPage={this.state.totalPage}/>
                         </Col>
-                        <Col xs = { 6 } md = { 6 } >
-                            <Schema />
-                        </Col>
                     </Row>
+                    <Row><Schema /></Row>
                 </Grid>
             </div>
         );
@@ -44,4 +42,5 @@ export class App extends React.Component {
 
 
 
-export default App;
+
+export default Main;
