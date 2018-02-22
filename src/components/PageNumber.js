@@ -30,10 +30,13 @@ class PageNumber extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    currentPage:state.currentPage,
-    totalPage:state.totalPage
-});
+const mapStateToProps = (state, ownProps) => {
+    // debugger;
+    // console.log(state);
+    return{
+    currentPage:state.reducers.currentPage,
+    totalPage:state.reducers.totalPage
+}};
 
 
 export default connect(

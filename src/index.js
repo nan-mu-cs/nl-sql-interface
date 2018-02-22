@@ -13,8 +13,8 @@ import { Route } from 'react-router'
 
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
-import reducers from './reducers' // Or wherever you keep your reducers
-
+import reducers from './reducers'; // Or wherever you keep your reducers
+// debugger;
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory();
 
@@ -23,9 +23,11 @@ const middleware = routerMiddleware(history);
 
 // Add the reducer to your store on the `router` key
 // Also apply our middleware for navigating
+// debugger;
+console.log(reducers);
 const store = createStore(
     combineReducers({
-        ...reducers,
+        reducers,
         router: routerReducer
     }),
     applyMiddleware(middleware)
