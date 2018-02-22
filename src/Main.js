@@ -30,7 +30,11 @@ export class Main extends Component {
                             <PageNumber />
                         </Col>
                     </Row>
-                    <Row><Schema /></Row>
+                    <Row>
+                        <Col xs = { 12 } md = { 6 } >
+                            <Schema />
+                        </Col>
+                    </Row>
                 </Grid>
             </div>
         );

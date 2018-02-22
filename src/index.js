@@ -1,4 +1,5 @@
 import Main from './Main';
+import Login from './Login'
 import registerServiceWorker from './registerServiceWorker';
 
 import React from 'react'
@@ -40,7 +41,8 @@ ReactDOM.render(
         { /* ConnectedRouter will use the store from Provider automatically */ }
         <ConnectedRouter history={history}>
             <div>
-                <Route path="/" component={()=>{return <Main/>}}/>
+                <Route path="/test" component={()=>{return <Main/>}}/>
+                <Route path="/login" component={()=>{return <Login/>}}/>
             </div>
         </ConnectedRouter>
     </Provider>,
