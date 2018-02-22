@@ -11,19 +11,30 @@ class PageNumber extends React.Component {
 
         this.state = {
         };
+        this.handleClickNext = this.handleClickNext.bind(this);
+        this.handleClickPrev = this.handleClickNext.bind(this);
+    }
+
+    handleClickPrev(){
+        this.props.dispatch({type:"PREV_PAGE"});
+
+    }
+
+    handleClickNext(){
+        this.props.dispatch({type:"PREV_NEXT"});
     }
 
     render(){
         return(
             <Pagination >
                 <Pagination.First />
-                <Pagination.Prev />
+                <Pagination.Prev onClick={this.handleClickPrev}/>
                 <Pagination.Item > { 1 } </Pagination.Item>
                     <Pagination.Ellipsis />
-                    <Pagination.Item active > { this.props.currentPage } </Pagination.Item>
+                    <Pagination.Item active > { this.props.currentPage+1 } </Pagination.Item>
                     <Pagination.Ellipsis />
                     <Pagination.Item > { this.props.totalPage } </Pagination.Item>
-                    <Pagination.Next />
+                    <Pagination.Next onClick={this.handleClickNext}/>
                     <Pagination.Last />
             </Pagination>
         );

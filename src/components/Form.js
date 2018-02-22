@@ -46,6 +46,20 @@ class Form extends React.Component {
             });
         }.bind(this));
     }
+    componentWillReceiveProps(nextProps){
+        if(this.props.currentPage != nextProps.currentPage){
+            axios.get("/get_list",{
+                params:{
+                    database:nextProps.currentDatabase,
+                    page_idx:nextProps.currentPage
+                }
+            }).then(function (response) {
+                this.setState({
+                    data:response.data
+                });
+            }.bind(this));
+        }
+    }
     handleUpdates(item){
         // console.log("data updated"+item.nl+item.sql);
 

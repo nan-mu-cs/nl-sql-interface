@@ -3,7 +3,7 @@
  */
 export default {
     totalPage:10,
-    currentPage:1,
+    currentPage:0,
     user:"",
     databases:[],
     currentDatabase:""

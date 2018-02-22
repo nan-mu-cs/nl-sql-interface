@@ -16,6 +16,16 @@ export default (state = initialState, action) => {
         }
         case "UPDATE_TOTAL_PAGE":
             return {...state,totalPage:action.data};
+        case "PREV_PAGE":
+            let page = state.currentPage;
+            if(page - 1 >= 0)
+                page -= 1;
+            return {...state,currentPage:page};
+        case "PREV_NEXT":
+            page = state.currentPage;
+            if(page + 1 < state.totalPage)
+                page += 1;
+            return {...state,currentPage:page};
         default:
             return state
     }
