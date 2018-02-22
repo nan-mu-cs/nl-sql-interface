@@ -43,13 +43,17 @@ class LoginForm extends Component {
         });
         console.log({ value: this.inputname.value });
         this.props.dispatch({type:"login", value:this.inputname.value})
-        // this.props.dispatch(push("/database"))
     }
 
     submitDatabase(e) {
+        this.setState({
+            username: this.inputname.value
+        });
+        console.log({ value: this.inputname.value });
+        this.props.dispatch({type:"login", value:this.inputname.value})
         console.log({ value: this.target_database.value });
         this.props.dispatch({type:"login", value:this.target_database.value })
-        // this.props.dispatch(push("/database"))
+        this.props.dispatch(push("/test"))
     }
     render(){
         // console.log(this.props);
@@ -66,7 +70,7 @@ class LoginForm extends Component {
                                  placeholder = "username" inputRef={(ref)=>{this.inputname=ref}}
                     />
                 </FormGroup>
-                <Button type="button" onClick={this.submitName}> Submit </Button>
+                {/*<Button type="button" onClick={this.submitName}> Submit </Button>*/}
                 <FormGroup controlId="formControlsSelect">
                     <h4>Database</h4>
                     <FormControl componentClass="select" placeholder="select"  inputRef={(ref)=>{this.target_database=ref}}>
