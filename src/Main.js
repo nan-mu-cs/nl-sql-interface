@@ -11,8 +11,6 @@ export class Main extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            currentPage:2,
-            totalPage:10
         };
         this.renderform = this.renderform.bind(this);
     }
