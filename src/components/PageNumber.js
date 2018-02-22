@@ -3,6 +3,7 @@
  */
 import React,{Component} from 'react';
 import { Pagination } from 'react-bootstrap';
+import { connect } from 'react-redux'
 
 class PageNumber extends React.Component {
     constructor(props, context) {
@@ -29,4 +30,12 @@ class PageNumber extends React.Component {
     }
 }
 
-export default PageNumber;
+const mapStateToProps = (state, ownProps) => ({
+    currentPage:state.currentPage,
+    totalPage:state.totalPage
+});
+
+
+export default connect(
+    mapStateToProps
+)(PageNumber);

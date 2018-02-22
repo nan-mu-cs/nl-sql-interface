@@ -29,7 +29,7 @@ export class Main extends Component {
                     <Row className = "show-grid" >
                         <Col xs = { 12 } md = { 6 } >
                             <Form />
-                            <PageNumber currentPage={this.state.currentPage} totalPage={this.state.totalPage}/>
+                            <PageNumber />
                         </Col>
                     </Row>
                     <Row>
