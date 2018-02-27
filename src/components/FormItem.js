@@ -65,7 +65,7 @@ class FormItem extends Component {
                 <FormGroup controlId = "formBasicText"
                            validationState = { this.getValidationState() } >
                     <ControlLabel > SQL: </ControlLabel>
-                    <FormControl type = "text"
+                    <FormControl componentClass="textarea" type="text"
                                  value = { this.props.data.sql } placeholder = "Enter text" inputRef={(ref)=>{this.sql=ref}}
                                  onChange={this.handleChange.bind(this,"sql")}
                     />
