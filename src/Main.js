@@ -32,12 +32,12 @@ export class Main extends Component {
                             <Schema />
                         </Col>
                     </Row>
-                    <Row>
-                        <Col xs = { 12 } md = { 6 } >
-                            <PageNumber />
+                    {/*<Row>*/}
+                        {/*<Col xs = { 12 } md = { 6 } >*/}
+                            {/*<PageNumber />*/}
 
-                        </Col>
-                    </Row>
+                        {/*</Col>*/}
+                    {/*</Row>*/}
                 </Grid>
             </div>
         );

@@ -15,6 +15,7 @@ class FormItem extends Component {
             value:""
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleExecute = this.handleExecute.bind(this);
     }
     getValidationState() {
         const length = this.state.value.length;
@@ -24,23 +25,30 @@ class FormItem extends Component {
         return null;
     }
 
-    handleChange(e) {
+    handleChange(field,e) {
         // console.log(this.props);
-        this.props.handleUpdates({
-            id:this.props.data.id,
-            nl:this.nl.value,
-            sql:this.sql.value,
-            paraphase:this.paraphase.value
-        });
-        axios.post("/update",{
-            id:this.props.data.id,
-            nl:this.nl.value,
-            sql:this.sql.value,
-            paraphase:this.paraphase.value,
-            username:this.props.user
-        });
+        this.props.handleUpdates(this.props.data.id,field,e.target.value);
+        // axios.post("/update",{
+        //     id:this.props.data.id,
+        //     nl:this.nl.value,
+        //     sql:this.sql.value,
+        //     paraphase:this.paraphase.value,
+        //     username:this.props.user
+        // });
         // this.setState({ value: e.target.value });
     }
+    handleExecute(){
+        axios.post("/execute",{
+            id:this.props.data.id,
+            database:this.props.currentDatabase,
+            sql:this.sql.value
+        }).then(function (response) {
+            this.setState({
+                executeResult:response.data
+            });
+        });
+    }
+
     render(){
         // console.log(this.props);
         return(
@@ -50,7 +58,7 @@ class FormItem extends Component {
                            validationState = { this.getValidationState() } >
                     <ControlLabel > Natural Language: </ControlLabel>
                     <FormControl type = "text"
-                                 defaultValue = { this.props.data.nl } placeholder = "Enter text" inputRef={(ref)=>{this.nl=ref}}
+                                 value = { this.props.data.nl } placeholder = "Enter text" inputRef={(ref)=>{this.nl=ref}} onChange={this.handleChange.bind(this,"nl")}
                     />
                 </FormGroup>
 
@@ -58,7 +66,8 @@ class FormItem extends Component {
                            validationState = { this.getValidationState() } >
                     <ControlLabel > SQL: </ControlLabel>
                     <FormControl type = "text"
-                                 defaultValue = { this.props.data.sql } placeholder = "Enter text" inputRef={(ref)=>{this.sql=ref}}
+                                 value = { this.props.data.sql } placeholder = "Enter text" inputRef={(ref)=>{this.sql=ref}}
+                                 onChange={this.handleChange.bind(this,"sql")}
                     />
                 </FormGroup>
 
@@ -66,12 +75,25 @@ class FormItem extends Component {
                            validationState = { this.getValidationState() } >
                     <ControlLabel > Paraphase </ControlLabel>
                     <FormControl type = "text"
-                                 placeholder = "Enter text" inputRef={(ref)=>{this.paraphase=ref}}
+                                 value = {this.props.data.paraphase} inputRef={(ref)=>{this.paraphase=ref}}
+                                 onChange={this.handleChange.bind(this,"paraphase")}
                     />
                 </FormGroup>
 
-                <Button type="button" onClick={this.handleChange}> Submit </Button>
-                <Button type = "button" > Delete </Button>
+                <FormGroup controlId = "formBasicText"
+                           validationState = { this.getValidationState() } >
+                    <ControlLabel > Level </ControlLabel>
+                    <FormControl componentClass="select" placeholder="select"  value={this.props.data.difficult} inputRef={(ref)=>{this.difficult=ref}}
+                                 onChange={this.handleChange.bind(this,"difficult")}
+                    >
+                        <option value="simple">simple</option>
+                        <option value="medium">medium</option>
+                        <option value="hard">hard</option>
+                    </FormControl>
+                </FormGroup>
+                {this.state.executeResult && <p>Execute Result:{this.state.executeResult}</p>}
+                <Button type="button" onClick={this.handleExecute}> Execute </Button>
+                {/*<Button type = "button" > Delete </Button>*/}
             </div>
         );
     }
@@ -82,6 +104,7 @@ const mapStateToProps = (state, ownProps) => {
     // console.log(state);
     return{
         user:state.reducers.user,
+        currentDatabase:state.reducers.currentDatabase
     }};
 
 export default connect(
