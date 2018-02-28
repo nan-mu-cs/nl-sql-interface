@@ -31,3 +31,7 @@
   position: fixed;
   right: 0;
 }
+
+.form-item{
+  margin-bottom: 50px;
+}

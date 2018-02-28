@@ -53,13 +53,13 @@ class FormItem extends Component {
     render(){
         // console.log(this.props);
         return(
-            <div>
+            <div className="form-item">
                 <h4>ID:{this.props.data.id}</h4>
 
                 <FormGroup controlId = "formBasicText"
                            validationState = { this.getValidationState() } >
                     <ControlLabel > SQL: </ControlLabel>
-                    <FormControl componentClass="textarea" type="text"
+                    <FormControl componentClass="textarea" type="text" style={{ height: 100 }}
                                  value = { this.props.data.sql } placeholder = "Enter text" inputRef={(ref)=>{this.sql=ref}}
                                  onChange={this.handleChange.bind(this,"sql")}
                     />

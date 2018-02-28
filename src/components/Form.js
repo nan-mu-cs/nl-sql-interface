@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 import FormItem from "./FormItem";
 import {connect} from "react-redux";
 import axios from '../Axios';
+import { FormGroup, ControlLabel, FormControl, HelpBlock, Button} from 'react-bootstrap';
+
 
 class Form extends React.Component {
     constructor(props, context) {
@@ -134,7 +136,7 @@ class Form extends React.Component {
             <form id = "input-form" >
                 {this.state.warning && <p>{this.state.warning}</p>}
                 {formList}
-                <button type="button" onClick={this.handleSubmit}>Submit</button>
+                <Button type="button" onClick={this.handleSubmit}>Submit</Button>
             </form>
         );
     }
