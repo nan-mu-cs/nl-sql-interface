@@ -65,10 +65,9 @@ class Form extends React.Component {
         });
     }
     updateData(props){
-        axios.get("/get_list",{
+        axios.get("/get_nl_sql_list",{
             params:{
-                database:props.currentDatabase,
-                page_idx:props.currentPage
+                database:props.currentDatabase
             }
         }).then(function (response) {
             // console.log("data length"+response.data.length);
@@ -118,6 +117,13 @@ class Form extends React.Component {
                 warning:"hard sql must greater than or equal than 6 and simple must less than or equal 6"
             });
         }
+        axios.post("/submit",{
+            user_id:this.props.user,
+            database:this.props.currentDatabase,
+            data:data
+        }).then(function (response) {
+            console.log(response.data);
+        });
     }
     render(){
         let formList = this.state.data.map((item,idx)=>{
@@ -139,6 +145,7 @@ const mapStateToProps = (state, ownProps) => {
     // console.log(state);
     return{
         currentPage:state.reducers.currentPage,
-        currentDatabase:state.reducers.currentDatabase
+        currentDatabase:state.reducers.currentDatabase,
+        user: state.reducers.user
     }};
 export default connect(mapStateToProps)(Form);

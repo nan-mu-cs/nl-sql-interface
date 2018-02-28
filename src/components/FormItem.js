@@ -38,15 +38,16 @@ class FormItem extends Component {
         // this.setState({ value: e.target.value });
     }
     handleExecute(){
+        console.log(this.props.currentDatabase);
         axios.post("/execute",{
-            id:this.props.data.id,
             database:this.props.currentDatabase,
             sql:this.sql.value
         }).then(function (response) {
+            console.log(response.data);
             this.setState({
-                executeResult:response.data
+                executeResult:JSON.stringify(response.data)
             });
-        });
+        }.bind(this));
     }
 
     render(){
@@ -54,13 +55,6 @@ class FormItem extends Component {
         return(
             <div>
                 <h4>ID:{this.props.data.id}</h4>
-                <FormGroup controlId = "formBasicText"
-                           validationState = { this.getValidationState() } >
-                    <ControlLabel > Natural Language: </ControlLabel>
-                    <FormControl type = "text"
-                                 value = { this.props.data.nl } placeholder = "Enter text" inputRef={(ref)=>{this.nl=ref}} onChange={this.handleChange.bind(this,"nl")}
-                    />
-                </FormGroup>
 
                 <FormGroup controlId = "formBasicText"
                            validationState = { this.getValidationState() } >
@@ -68,6 +62,14 @@ class FormItem extends Component {
                     <FormControl componentClass="textarea" type="text"
                                  value = { this.props.data.sql } placeholder = "Enter text" inputRef={(ref)=>{this.sql=ref}}
                                  onChange={this.handleChange.bind(this,"sql")}
+                    />
+                </FormGroup>
+
+                <FormGroup controlId = "formBasicText"
+                           validationState = { this.getValidationState() } >
+                    <ControlLabel > Natural Language: </ControlLabel>
+                    <FormControl type = "text"
+                                 value = { this.props.data.nl } placeholder = "Enter text" inputRef={(ref)=>{this.nl=ref}} onChange={this.handleChange.bind(this,"nl")}
                     />
                 </FormGroup>
 

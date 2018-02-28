@@ -58,20 +58,20 @@ class LoginForm extends Component {
                 }
             }
             );
-        axios.get("/get_nums_page", {
-                params: {
-                    database: this.target_database.value
-                }
-            }).then(function (response) {
-                //console.log(this.props);
-                //debugger;
-
-           this.props.dispatch({type:"UPDATE_TOTAL_PAGE",data:response.data});
-            this.props.dispatch(push("/test"))
-        }.bind(this));
+        // axios.get("/get_nums_page", {
+        //         params: {
+        //             database: this.target_database.value
+        //         }
+        //     }).then(function (response) {
+        //         //console.log(this.props);
+        //         //debugger;
+        //
+        //    this.props.dispatch({type:"UPDATE_TOTAL_PAGE",data:response.data});
+        //     this.props.dispatch(push("/test"))
+        // }.bind(this));
         // console.log({ value: this.target_database.value });
-        // this.props.dispatch({type:"login", value:this.target_database.value });
-        //this.props.dispatch(push("/test"))
+        this.props.dispatch({type:"login", value:this.target_database.value });
+        this.props.dispatch(push("/test"))
     }
     render(){
         // console.log(this.props);
