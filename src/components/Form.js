@@ -14,22 +14,7 @@ class Form extends React.Component {
 
         this.state = {
             data:[
-                {   id:1,
-                    nl:"what are all the hellos",
-                    sql:"select * from hello where a = v"
-                },
-                {   id:2,
-                    nl:"what are all the hellos",
-                    sql:"select * from hello where a = v"
-                },
-                {   id:3,
-                    nl:"what are all the hellos",
-                    sql:"select * from hello where a = v"
-                },
-                {   id:4,
-                    nl:"what are all the hellos",
-                    sql:"select * from hello where a = v"
-                },
+
             ]
         };
 
