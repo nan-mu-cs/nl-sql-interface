@@ -94,7 +94,7 @@ class FormItem extends Component {
                     </FormControl>
                 </FormGroup>
                 {this.state.executeResult && <p>Execute Result:{this.state.executeResult}</p>}
-                <Button type="button" onClick={this.handleExecute}> Execute </Button>
+                {/*<Button type="button" onClick={this.handleExecute}> Execute </Button>*/}
                 {/*<Button type = "button" > Delete </Button>*/}
             </div>
         );
