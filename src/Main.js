@@ -25,12 +25,12 @@ export class Main extends Component {
                 <Header />
                 <Grid >
                     <Row className = "show-grid" >
-                        <Col xs = { 12 } md = { 6 } >
+                        <Col xs = { 12 } md = { 12 } >
                             <Form />
                         </Col>
-                        <Col className="schema-col" xs = { 12 } md = { 6 } >
-                            <Schema />
-                        </Col>
+                        {/*<Col className="schema-col" xs = { 12 } md = { 12 } >*/}
+                            {/*<Schema />*/}
+                        {/*</Col>*/}
                     </Row>
                     {/*<Row>*/}
                         {/*<Col xs = { 12 } md = { 6 } >*/}
