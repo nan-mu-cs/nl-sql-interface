@@ -47,8 +47,8 @@ class Form extends React.Component {
         }
     }
     populateData(data){
-        if(data&&data.length > 20)
-            return;
+        // if(data&&data.length > 20)
+        //     return;
         let newData;
         if(data)
             newData = [...data];
@@ -72,6 +72,7 @@ class Form extends React.Component {
                 database:props.currentDatabase
             }
         }).then(function (response) {
+            console.log(response.data);
             // console.log("data length"+response.data.length);
             this.populateData(response.data);
         }.bind(this))
