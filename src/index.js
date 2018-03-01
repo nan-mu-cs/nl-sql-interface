@@ -36,7 +36,13 @@ const store = createStore(
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/foo'))
 axios.get("/get_names_database").then(function (response) {
-    store.dispatch({type:"UPDATE_DATABASES_NAME",data:response.data});
+    let data = [];
+
+    for(let i = 0;i<response.data.length;i++){
+        data.push(response.data[i].database);
+    }
+    // console.log(data);
+    store.dispatch({type:"UPDATE_DATABASES_NAME",data:data});
 });
 ReactDOM.render(
     <Provider store={store}>

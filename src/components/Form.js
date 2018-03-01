@@ -99,7 +99,7 @@ class Form extends React.Component {
         let data = [];
         let hard = 0, medium = 0,simple = 0;
         for(let item of this.state.data){
-            if(item.nl.length && item.sql.length && item.paraphase&&item.paraphase.length && item.difficult.length){
+            if(item.nl && item.nl.length && item.sql && item.sql.length && item.paraphase&&item.paraphase.length && item.difficult && item.difficult.length){
                 data.push(item);
                 if(item.difficult === "hard")
                     hard += 1;
